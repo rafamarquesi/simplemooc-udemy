@@ -5,6 +5,8 @@ from django.core import validators
 from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin, UserManager)
 from django.conf import settings
 
+from core.models import Endereco
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
@@ -20,6 +22,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(
         'Data de entrada', auto_now_add=True
     )
+    endereco = models.OneToOneField(Endereco, default='', on_delete=models.CASCADE)
 
     objects = UserManager()
 
